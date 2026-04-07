@@ -1,0 +1,87 @@
+*{
+    box-sizing: border-box;
+}
+h2{
+    display: inline;
+    margin: 0;
+}
+.firstTitle{
+    margin: 0;
+    display: flex;
+    padding: 20px 10px;
+}
+.search-container {
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  background: #fff;
+}
+.iconSearch{
+    margin:0px 10px;
+    font-weight: 700;
+    color:#1976d2;
+    font-size:22px;
+
+}
+
+.search-input {
+  width: 70%;
+  padding: 8px;
+  margin-right: 8px;
+}
+
+.search-btn {
+  padding: 8px 12px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.search-btn:hover {
+  background-color: #0d47a1;
+}
+
+.rapport-card {
+  border: 1px solid #979797;
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 6px;
+  background: #fafafa;
+  width: fit-content;
+  margin-right:16px ;
+}
+.alltitle{
+    display: flex;
+
+}
+p{
+    margin: 3px;
+}
+.iconPdf{
+    margin: 2px;
+    color: rgb(248, 8, 8);
+}
+.aucun{
+    padding: 30px 3px;
+    font-size: larger;
+    display: flex;
+    
+}
+.iconSearchoff{
+ margin-right: 10px;
+}
+.rechercheNav{
+    padding-bottom: 20px;
+}
+a{
+    text-decoration: none;
+    color: #3e3c3c;
+}
+.cards{
+    display: flex;
+
+}

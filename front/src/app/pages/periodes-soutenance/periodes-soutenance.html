@@ -1,0 +1,122 @@
+<div class="periods-page">
+  <div class="hero">
+    <div>
+      <h2>Gestion des périodes de soutenance</h2>
+      <p>Créer, modifier, rattacher des salles et générer les créneaux depuis un seul écran.</p>
+    </div>
+    <button class="ghost-btn" (click)="resetForm()">Nouvelle période</button>
+  </div>
+
+  <p class="feedback" *ngIf="feedbackMessage">{{ feedbackMessage }}</p>
+
+  <div class="layout">
+    <section class="card form-card">
+      <h3>{{ selectedPeriodeId ? 'Modifier la période' : 'Créer une période' }}</h3>
+
+      <form [formGroup]="form" class="period-form">
+        <label>Diplôme</label>
+        <select formControlName="diplome_id">
+          <option [ngValue]="null">Choisir un diplôme</option>
+          <option *ngFor="let diplome of diplomes" [ngValue]="diplome.id">{{ diplome.nom }}</option>
+        </select>
+
+        <div class="grid-two">
+          <div>
+            <label>Date début</label>
+            <input type="date" formControlName="date_debut" />
+          </div>
+          <div>
+            <label>Date fin</label>
+            <input type="date" formControlName="date_fin" />
+          </div>
+        </div>
+
+        <div class="grid-three">
+          <div>
+            <label>Heure début</label>
+            <input type="time" formControlName="heure_debut" />
+          </div>
+          <div>
+            <label>Heure fin</label>
+            <input type="time" formControlName="heure_fin" />
+          </div>
+          <div>
+            <label>Durée</label>
+            <input type="number" formControlName="duree_minutes" />
+          </div>
+        </div>
+      </form>
+
+      <div class="actions">
+        <button class="primary-btn" (click)="savePeriode()" [disabled]="isSaving">
+          {{ isSaving ? 'Enregistrement...' : (selectedPeriodeId ? 'Mettre à jour' : 'Créer la période') }}
+        </button>
+      </div>
+
+      <div class="salles-block" *ngIf="selectedPeriodeId">
+        <div class="section-head">
+          <h3>Salles liées à la période</h3>
+          <button class="secondary-btn" (click)="saveSalles()">Enregistrer les salles</button>
+        </div>
+        <div class="salles-grid">
+          <label class="salle-item" *ngFor="let salle of salles">
+            <input
+              type="checkbox"
+              [checked]="isSalleSelected(salle.id)"
+              (change)="onSalleToggle(salle.id, $any($event.target).checked)"
+            />
+            <span>{{ salle.nom }}</span>
+            <small>{{ salle.departement?.nom }}</small>
+          </label>
+        </div>
+      </div>
+
+      <div class="creneaux-block" *ngIf="selectedPeriodeId">
+        <div class="section-head">
+          <h3>Créneaux générés</h3>
+          <button class="secondary-btn" (click)="generateCreneaux()">Générer les créneaux</button>
+        </div>
+
+        <table class="data-table" *ngIf="creneaux.length > 0">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Slot</th>
+              <th>Début</th>
+              <th>Fin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let creneau of creneaux">
+              <td>{{ creneau.date }}</td>
+              <td>{{ creneau.code_slot }}</td>
+              <td>{{ creneau.heure_debut }}</td>
+              <td>{{ creneau.heure_fin }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p *ngIf="creneaux.length === 0">Aucun créneau généré pour cette période.</p>
+      </div>
+    </section>
+
+    <section class="card list-card">
+      <h3>Périodes existantes</h3>
+
+      <div class="periode-list">
+        <button
+          class="periode-item"
+          *ngFor="let periode of periodes"
+          [class.active]="selectedPeriodeId === periode.id"
+          (click)="selectPeriode(periode)"
+        >
+          <div>
+            <strong>{{ periode.diplome?.nom }}</strong>
+            <p>{{ periode.date_debut }} -> {{ periode.date_fin }}</p>
+          </div>
+          <span>{{ periode.creneaux_count || 0 }} créneaux</span>
+        </button>
+      </div>
+    </section>
+  </div>
+</div>

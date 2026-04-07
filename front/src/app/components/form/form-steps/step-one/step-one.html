@@ -1,0 +1,58 @@
+<h3>Données personnelles</h3>
+
+<form [formGroup]="group">
+<div class="formContainer">
+  <div class="fieldsContainer">
+  <!-- Nom -->
+  <mat-form-field class="fieldstyle fieldMargin">
+    <mat-label>Nom</mat-label>
+    <input matInput formControlName="nom"  readonly>
+  </mat-form-field>
+
+  <!-- Prénom -->
+  <mat-form-field class="fieldstyle">
+    <mat-label>Prénom</mat-label>
+    <input matInput formControlName="prenom" readonly>
+  </mat-form-field>
+  </div>
+
+  <div>
+
+  <!-- CIN -->
+  <mat-form-field class="fieldstyle fieldMargin">
+    <mat-label>CIN</mat-label>
+    <input matInput formControlName="cin" readonly>
+  </mat-form-field>
+
+  <!-- Filière -->
+  <mat-form-field class="fieldstyle">
+   <mat-label>email</mat-label>
+    <input matInput formControlName="email" readonly>
+  </mat-form-field>
+  </div>
+  <div>
+  <mat-form-field class="fieldstyle fieldMargin">
+    
+       <mat-label>diplome</mat-label>
+    <input matInput formControlName="diplome" readonly>
+  </mat-form-field>
+
+   <mat-form-field class="fieldstyle ">
+      <mat-label>niveau</mat-label>
+    <input matInput formControlName="niveau" readonly>
+  </mat-form-field>
+
+  </div>
+  <div>
+
+  <!-- CIN -->
+  <mat-form-field class="fieldstyle fieldMargin">
+    <mat-label>specialite</mat-label>
+      <input matInput formControlName="specialite" readonly>
+  </mat-form-field>
+
+ 
+  </div>
+  </div>
+
+</form>

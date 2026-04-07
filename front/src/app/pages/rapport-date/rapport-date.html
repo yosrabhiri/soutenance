@@ -1,0 +1,26 @@
+<div class="card">
+  <h2>Configuration des dates de dépôt du rapport</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Date d'ouverture</mat-label>
+      <input matInput [matDatepicker]="pickerOuverture" formControlName="date_ouverture">
+      <mat-datepicker-toggle matSuffix [for]="pickerOuverture"></mat-datepicker-toggle>
+      <mat-datepicker #pickerOuverture></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Date de fermeture</mat-label>
+      <input matInput [matDatepicker]="pickerFermeture" formControlName="date_fermeture">
+      <mat-datepicker-toggle matSuffix [for]="pickerFermeture"></mat-datepicker-toggle>
+      <mat-datepicker #pickerFermeture></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Enregistrer
+    </button>
+  </form>
+
+  <p class="mt-3 text-success">{{ message }}</p>
+</div>

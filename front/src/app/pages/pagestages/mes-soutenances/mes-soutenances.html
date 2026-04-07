@@ -1,0 +1,56 @@
+<div class="schedule-page">
+  <h2>Mon emploi de soutenance</h2>
+
+  <div class="toolbar">
+    <label for="periode-schedule">Période</label>
+    <select id="periode-schedule" [(ngModel)]="selectedPeriodeId" (change)="loadMySoutenances()">
+      <option *ngFor="let periode of periodes" [ngValue]="periode.id">
+        {{ periode.diplome.nom }} | {{ periode.date_debut }} -> {{ periode.date_fin }}
+      </option>
+    </select>
+    <button class="refresh-btn" (click)="loadMySoutenances()">Actualiser</button>
+  </div>
+
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  <p *ngIf="isLoading">Chargement de vos soutenances...</p>
+
+  <div class="schedule-card" *ngIf="selectedPeriodeId">
+    <div class="schedule-head">
+      <div>
+        <h3>{{ myTeacherName || 'Enseignant' }}</h3>
+        <p>Vous voyez ici uniquement les soutenances où vous êtes membre du jury.</p>
+      </div>
+      <span class="schedule-count">{{ mySoutenances.length }} soutenance(s)</span>
+    </div>
+
+    <div class="table-responsive" *ngIf="mySoutenances.length > 0; else noSchedule">
+      <table class="soutenances-table">
+        <thead>
+          <tr>
+            <th>Étudiant</th>
+            <th>Rôle</th>
+            <th>Créneau</th>
+            <th>Salle</th>
+            <th>Jury</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let soutenance of mySoutenances">
+            <td>{{ soutenance.etudiant?.prenom }} {{ soutenance.etudiant?.nom }}</td>
+            <td>{{ soutenance.role || 'Jury' }}</td>
+            <td>
+              {{ soutenance.creneau?.date }} | {{ soutenance.creneau?.code_slot }} |
+              {{ soutenance.creneau?.heure_debut }}-{{ soutenance.creneau?.heure_fin }}
+            </td>
+            <td>{{ soutenance.salle?.nom || '—' }}</td>
+            <td>{{ myJuryLabel(soutenance) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noSchedule>
+      <p class="empty-schedule">Aucune soutenance générée pour vous sur cette période.</p>
+    </ng-template>
+  </div>
+</div>

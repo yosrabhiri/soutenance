@@ -1,0 +1,23 @@
+/*mat-card{
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+}
+mat-form-field{
+    display: block;
+}*/
+.register-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.full-width {
+  width: 50%;
+  grid-column: span 2;
+}
+
+/* Le bouton prend toute la largeur */
+button {
+  grid-column: span 1;
+}

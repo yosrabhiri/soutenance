@@ -1,0 +1,49 @@
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.fieldscontainer{
+    display: flex;
+    justify-content:center;
+}
+.fieldstyle{
+    min-width: 45%;
+    
+}
+.fieldMargin{
+   
+    margin: 0 50px 0 0;
+}
+.buttonImport{
+    width: 450px;
+    height: 45px;
+    font-size: large;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    background-color: #3871CA;
+    border-radius: 0.4rem;
+    border: none;
+}
+.buttonImpDiv{
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+}
+.container{
+    background-color: white;
+    padding:15px 30px;
+    border-radius: 0.3rem;
+}
+/* Responsive */
+@media (max-width: 900px) {
+
+   .fieldstyle{
+    width: 100%;
+    
+}
+.fieldMargin{
+   
+    margin: 0;
+}
+}

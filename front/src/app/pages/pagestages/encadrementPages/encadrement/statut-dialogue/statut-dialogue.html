@@ -1,0 +1,11 @@
+<div>
+<h2 mat-dialog-title>Validation le stage</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>etes vous sur que vous voulez valider le stage de cet etudiant</h3>
+  <div>Voulez-vous vraiment valider le travail de {{ data.etudiant.nom }} ?</div> 
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button matButton mat-dialog-close (click)="onCancel()">Cancel</button>
+  <button matButton [mat-dialog-close]="true" cdkFocusInitial  (click)="onConfirm()" color="primary">Valider</button>
+</mat-dialog-actions>
+</div>

@@ -1,0 +1,28 @@
+<div class="all">
+  <h2 class="titre">Votre agenda</h2>
+  <div class="container">
+
+    <div *ngFor="let reunion of reunions" class="carte">
+      <h2>{{ reunion.titre }}</h2>
+      <mat-icon class="icon">event</mat-icon>
+
+      <!-- Vérifie si la réunion est passée ou à venir -->
+      <h3 [ngClass]="isPast(reunion) ? 'etat-passe' : 'etat-avenir'">
+        {{ isPast(reunion) ? 'Réunion passée' : 'Réunion à venir' }}
+      </h3>
+
+      <div class="infos">
+        <p>
+          Vous avez une réunion 
+          <strong>
+            le {{ reunion.jour | date:'fullDate' }} à {{ reunion.heure }}
+          </strong> 
+          dans la salle <strong>{{ reunion.salle }}</strong>
+        </p>
+        <p><strong class="note">Note :</strong> {{ reunion.note }}</p>
+       
+      </div>
+    </div>
+
+  </div>
+</div>

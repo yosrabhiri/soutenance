@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+.container{
+    padding: 50px 60px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.inputs{
+    width: 100%;
+}
+.titre{
+  
+    padding-bottom: 15px;
+    text-align: center;
+}
+.button{
+   
+    color: rgb(0, 0, 0) !important;
+    padding: 8px 15px;
+     border-style: none;
+     margin:0 10px;
+      border-radius:0.2rem ;
+}
+.buttonCreer{
+    background-color: #3871CA;
+    color: rgb(255, 255, 255) !important;
+   
+
+   
+
+}
+.button-container{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}

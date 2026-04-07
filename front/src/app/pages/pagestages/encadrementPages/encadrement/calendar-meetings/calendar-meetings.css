@@ -1,0 +1,23 @@
+.titre{
+    text-align: center;
+    margin: 5px 0px 10px;
+    color: rgb(47, 88, 201);
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.subtitle{
+    color: rgb(44, 44, 44);
+}
+.container{
+  
+    margin: 16px;
+    border-radius: 0.3rem;
+}
+.fermer{
+    background-color: rgb(47, 88, 201);
+    border: none;
+    border-radius: 0.2rem;
+    padding: 6px 15px;
+    color: white;
+    cursor:pointer
+}

@@ -1,0 +1,66 @@
+<h3>Encadrant professionnel</h3>
+
+<form [formGroup]="details">
+<div class="formContainer">
+  <div class="fieldsContainer">
+  <!-- Nom -->
+  <mat-form-field class="fieldstyle fieldMargin">
+    <mat-label>Nom et Préom</mat-label>
+    <input matInput formControlName="nompre" placeholder="Nom et Prénom" [readonly]="readOnly" required>
+  </mat-form-field>
+
+  <!-- Prénom -->
+  <mat-form-field class="fieldstyle">
+    <mat-label>Fonction</mat-label>
+    <input matInput formControlName="fonction" placeholder="Fonction" [readonly]="readOnly" required>
+  </mat-form-field>
+  </div>
+
+  <div>
+
+  <!-- CIN -->
+  <mat-form-field class="fieldstyle fieldMargin">
+    <mat-label>service</mat-label>
+    <input matInput formControlName="service" placeholder="service" [readonly]="readOnly" required>
+  </mat-form-field>
+
+  <!-- Filière -->
+  <mat-form-field class="fieldstyle">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="emailpro" placeholder="email" [readonly]="readOnly" required>
+  </mat-form-field>
+  </div>
+  <h3>Détails du stage</h3>
+  <div>
+  <mat-form-field class="fieldstyle fieldMargin">
+    
+    <mat-label>Tache proposée</mat-label>
+    <input matInput formControlName="tache" [readonly]="readOnly" placeholder="Tache proposée" required>
+    
+  </mat-form-field>
+   <mat-form-field class="fieldstyle ">
+    
+     <mat-label>Période du stage</mat-label>
+      <mat-date-range-input
+    [rangePicker]="campaignOnePicker">
+    <input [readonly]="readOnly" matStartDate placeholder="Start date" formControlName="start">
+    <input [readonly]="readOnly" matEndDate placeholder="End date" formControlName="end">
+  </mat-date-range-input>
+  <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+  <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+</mat-form-field>
+<!-- Erreur personnalisée -->
+<div class="text-red-600" *ngIf="details.hasError('stageDurationInvalid')">
+  ⚠️ Pour les étudiants A3, la durée du stage doit être au moins de 4 mois.
+</div>
+
+  </div>
+  <div class="buttonImpDiv">
+  <button class="buttonImport" mat-raised-button (click)="fileInput.click()">Importer un document</button>
+  <input type="file" #fileInput style="display:none" (change)="onFileSelected($event)" />
+  </div>
+  </div>
+
+</form>
+

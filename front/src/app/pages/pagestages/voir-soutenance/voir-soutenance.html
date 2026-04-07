@@ -1,0 +1,89 @@
+<div class="soutenances-container">
+  <h2>Prévisualisation des soutenances</h2>
+
+  <div class="toolbar">
+    <label for="periode-preview">Période</label>
+    <select id="periode-preview" [(ngModel)]="selectedPeriodeId" (change)="loadAll()">
+      <option *ngFor="let periode of periodes" [ngValue]="periode.id">
+        {{ periode.diplome.nom }} | {{ periode.date_debut }} -> {{ periode.date_fin }}
+      </option>
+    </select>
+    <button class="refresh-btn" (click)="loadAll()">Actualiser</button>
+  </div>
+
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  <p class="success" *ngIf="generationMessage">{{ generationMessage }}</p>
+
+  <div class="preview-controls" *ngIf="selectedPeriodeId">
+    <button class="refresh-btn secondary-btn" (click)="loadPreviews()" [disabled]="isLoadingPreviews">
+      {{ isLoadingPreviews ? 'Chargement des previews...' : 'Charger les previews de génération' }}
+    </button>
+  </div>
+
+  <div class="summary-grid" *ngIf="planningInput">
+    <div class="summary-card">
+      <h3>Entrée</h3>
+      <p>Période: {{ planningInput.periode?.diplome?.nom }}</p>
+      <p>Salles: {{ planningInput.meta?.nombre_salles }}</p>
+      <p>Créneaux: {{ planningInput.meta?.nombre_creneaux }}</p>
+      <p>Enseignants candidats: {{ planningInput.meta?.nombre_enseignants_candidats }}</p>
+      <p>Stages concernés: {{ planningInput.meta?.nombre_stages_concernes }}</p>
+    </div>
+    <div class="summary-card">
+      <h3>CP-SAT</h3>
+      <p>Score: {{ cpSatPreview?.score ?? '—' }}</p>
+      <p>Violations dures: {{ cpSatPreview?.hard_violations ?? '—' }}</p>
+      <p>Stages non affectés: {{ cpSatPreview?.unassigned_stage_ids?.length ?? 0 }}</p>
+      <p>Statut solveur: {{ cpSatPreview?.meta?.solver_status ?? '—' }}</p>
+    </div>
+    <div class="summary-card">
+      <h3>Génération complète</h3>
+      <p>Statut: {{ generationStatusLabel() }}</p>
+      <p>Algorithme: {{ generationStatus?.generation_algorithm || '—' }}</p>
+      <p>Queue: {{ generationStatus?.queue_connection || '—' }}</p>
+      <p>Soutenances créées: {{ generationStatus?.soutenances_count ?? 0 }}</p>
+      <p *ngIf="generationStatus?.generation_error">Erreur: {{ generationStatus?.generation_error }}</p>
+      <div class="generation-actions">
+        <button class="refresh-btn secondary-btn" (click)="launchFullGeneration('cp_sat')" [disabled]="isLaunchingGeneration">
+          Lancer complète CP-SAT
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive" *ngIf="cpSatPreview?.assignments?.length">
+    <h3>Preview CP-SAT</h3>
+    <table class="soutenances-table">
+      <thead>
+        <tr>
+          <th>Étudiant</th>
+          <th>Créneau</th>
+          <th>Salle</th>
+          <th>Jury</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let assignment of cpSatPreview.assignments">
+          <td>{{ stageLabel(assignment.stage_id) }}</td>
+          <td>{{ slotLabel(assignment.creneau_id) }}</td>
+          <td>{{ roomLabel(assignment.salle_id) }}</td>
+          <td>{{ assignment.jury_ids.map(teacherLabel.bind(this)).join(' | ') }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diagnostics-block" *ngIf="cpSatPreview?.unassigned_stage_ids?.length">
+    <h3>Stages non affectés en CP-SAT</h3>
+    <div class="diagnostic-card" *ngFor="let stage of unassignedStages(cpSatPreview)">
+      <p><strong>Étudiant:</strong> {{ stageLabel(stage.stage_id) }}</p>
+      <p><strong>Encadrant:</strong> {{ stage.encadrant_academique?.nom || 'Non défini' }}</p>
+      <p><strong>Taille jury requise:</strong> {{ stage.taille_jury_requise }}</p>
+      <p><strong>Candidats jury:</strong> {{ juryCandidateLabels(stage) }}</p>
+      <p><strong>Diagnostic:</strong></p>
+      <ul>
+        <li *ngFor="let message of stageDiagnostics(stage)">{{ message }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

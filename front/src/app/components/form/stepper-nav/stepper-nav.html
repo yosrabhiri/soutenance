@@ -1,0 +1,69 @@
+
+
+<mat-stepper class="stepsContainer" linear #stepper>
+  <mat-step [stepControl]="formData.firstFormGroup" [editable]="true">
+    <form [formGroup]="formData.firstFormGroup">
+      <ng-template class="disapp" matStepLabel>Données personnelles</ng-template>
+      <app-step-one [group]="formData.firstFormGroup"></app-step-one>
+      <div class="displayButton">
+        <button type="button" matButton matStepperNext (click)="showD()"  class="nextButton">Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="formData.secondFormGroup" [editable]="true">
+    <form [formGroup]="formData.secondFormGroup" >
+      <ng-template matStepLabel>Société</ng-template>
+      <app-step-two [groupsociete]="formData.secondFormGroup"  [readOnly]="disablePreviousSteps"></app-step-two>
+      <div class="displayButton">
+        <button matButton matStepperPrevious>Précedent</button>
+        <button matButton matStepperNext class="nextButton">Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [editable]="true">
+    <ng-template matStepLabel>Détails du stage</ng-template>
+    <form [formGroup]="formData.thirdFormGroup">
+    <app-step-three [details]="formData.thirdFormGroup"  [readOnly]="disablePreviousSteps"></app-step-three>
+    </form>
+    <div class="displayButton">
+      <button matButton matStepperPrevious>Précedent</button>
+       <!-- Bouton pour A3 -->
+    <ng-container *ngIf="(formData.firstFormGroup.value.niveau === 'A3' 
+      && (formData.firstFormGroup.value.diplome === 'LICENCE NATIONALE' 
+      || formData.firstFormGroup.value.diplome === 'INGENIEUR INFORMATIQUE'))
+      || (formData.firstFormGroup.value.niveau === 'A2' 
+      && formData.firstFormGroup.value.diplome === 'MASTER'); else submitBtn">
+  <button matButton matStepperNext class="nextButton">
+    Suivant
+  </button>
+</ng-container>
+
+<ng-template #submitBtn>
+  <button matButton class="nextButton" (click)="submitStage(stepper)">
+    Suivant
+  </button>
+</ng-template>
+
+   
+     
+    </div>
+  </mat-step>
+  <mat-step  *ngIf="(formData.firstFormGroup.value.niveau === 'A3' && (formData.firstFormGroup.value.diplome==='LICENCE NATIONALE'||formData.firstFormGroup.value.diplome==='INGENIEUR INFORMATIQUE'))||(formData.firstFormGroup.value.niveau === 'A2' && formData.firstFormGroup.value.diplome==='MASTER')"[editable]="true">
+    <ng-template matStepLabel>Encadrant</ng-template>
+      <form [formGroup]="formData.fourthFormGroup">
+    <app-step-four [prof]="formData.fourthFormGroup"
+     [encadrants]="encadrants" [readOnly]="disablePreviousSteps" ></app-step-four>
+    </form>
+    <div class="displayButton">
+      <button matButton matStepperPrevious>Précedent</button>
+       
+     <button matButton class="nextButton" (click)="submitStage(stepper)">
+  Suivant
+</button>
+
+    </div>
+  </mat-step>
+  <mat-step> <ng-template matStepLabel>Télécharger</ng-template>
+    <app-step-five></app-step-five>
+  </mat-step>
+</mat-stepper>

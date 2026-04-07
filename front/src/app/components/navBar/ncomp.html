@@ -1,0 +1,54 @@
+<div class="container">
+<mat-toolbar class="mat-elevation-z3 toolrel">
+  <button mat-icon-button (click)="collapsed.set(!collapsed())">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <img src="assets/issatlogo.PNG" width="75" style="margin-left: 20px;">
+
+  <!-- Élément qui pousse le bouton à droite -->
+  <span style="flex: 1 1 auto;"></span>
+
+  <button mat-raised-button color="primary" (click)="onLogout()">
+    Logout
+  </button>
+<!-- header.component.html -->
+<div class="notification-wrapper" (click)="toggleNotifications()">
+  <mat-icon [matBadge]="unreadCount" matBadgeColor="warn">notifications</mat-icon>
+
+
+  <!-- Dropdown notification -->
+  <div class="notifications-dropdown" *ngIf="showNotifications">
+    <div *ngFor="let notif of notifications" class="notification-item" (click)="showMessage(notif)"
+    [ngClass]="{ 'unread': !notif.read_at, 'read': notif.read_at }">
+  <!--<p *ngIf="notif.role ==='enseignant'">
+    {{ notif.data.message.message || 'Pas de message' }}
+  </p>-->
+
+  <!-- Si l'utilisateur est étudiant -->
+  <!--<p *ngIf="notif.role ==null">
+    {{ notif.data.message.message || 'Pas de message' }}
+  </p>-->
+  <p>{{ notif.data.message || 'Pas de message' }}</p> 
+  <small>{{ notif.created_at | date:'short' }}</small>
+</div>
+
+    <div *ngIf="notifications.length === 0">Aucune notification</div>
+  </div>
+</div>
+
+</mat-toolbar>
+
+<mat-sidenav-container class="content" >
+  <mat-sidenav opened mode="side" [style.width]="navwidth()">
+    <app-sidenav [collapsed]="collapsed()"></app-sidenav>
+    </mat-sidenav>
+  <mat-sidenav-content [style.margin-left]="navwidth()" class="contain"
+  >
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</div>
+ 
+ 
+

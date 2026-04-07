@@ -1,0 +1,51 @@
+<div class="container">
+<div class="table-header">
+  <div class="header-content">
+    <div class="date-section">
+      <span class="month-year">Juillet 2025</span>
+    </div>
+   <div class="search-section" style="display: flex; align-items: center; gap: 8px;">
+        <input type="text" class="search-input" placeholder="Rechercher..." [(ngModel)]="searchText" (input)="filterTable()" />
+        <button class="search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+  </div>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Nom et prénom</th>
+        <th>Email</th>
+        <th>Statut du stage</th>
+        <th>Nom du société</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let etu of etudiants">
+  <td>
+    <div class="nom-cell">
+      <img src="assets/images/avatar.jpg" alt="avatar" class="avatar" />
+      <span>{{ etu.nom }} {{etu.prenom}}</span>
+    </div>
+  </td>
+  <td>{{ etu.email }}</td>
+  <td>
+    <span [class.affecte]="etu.statut === 'Affecté'"
+          [class.non-affecte]="etu.statut === 'Non affecté'">
+      {{ etu.statut }}
+    </span>
+  </td>
+  <td>{{ etu.societe }}</td>
+</tr>
+
+    </tbody>
+  </table>
+
+  <div class="btn-container">
+    <button class="btn-action">Sélectionner offre</button>
+  </div>
+</div>
+</div>

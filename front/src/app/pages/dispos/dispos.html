@@ -1,0 +1,149 @@
+<div class="dispos-page">
+  <section class="panel hero-panel">
+    <div class="hero-head">
+      <div>
+        <p class="eyebrow">Disponibilités</p>
+        <h1>Indiquer mes disponibilités de soutenance</h1>
+        <p class="hero-text">
+          Choisissez une période, ouvrez un jour, puis définissez votre statut créneau par créneau.
+        </p>
+      </div>
+      <div class="hero-badges" *ngIf="selectedPeriode() as periode">
+        <div class="hero-badge">
+          <span>Diplôme</span>
+          <strong>{{ periode.diplome.nom }}</strong>
+        </div>
+        <div class="hero-badge">
+          <span>Période</span>
+          <strong>{{ periode.date_debut }} -> {{ periode.date_fin }}</strong>
+        </div>
+        <div class="hero-badge">
+          <span>Durée</span>
+          <strong>{{ periode.duree_minutes }} min</strong>
+        </div>
+      </div>
+    </div>
+
+    <form [formGroup]="form" class="period-form">
+      <label class="field">
+        <span>Période de soutenance</span>
+        <select
+          id="periode-select"
+          formControlName="periodeId"
+          (change)="onPeriodeChange($any($event.target).value)">
+          <option [value]="null">Choisir une période</option>
+          <option *ngFor="let periode of periodes" [value]="periode.id">
+            {{ periode.diplome.nom }} | {{ periode.date_debut }} -> {{ periode.date_fin }}
+          </option>
+        </select>
+      </label>
+
+      <div class="summary-bar" *ngIf="selectedPeriodeId && disponibilites.length > 0">
+        <div class="summary-pill preferred">
+          <strong>{{ totalStatusCount('preferred') }}</strong>
+          <span>Préférés</span>
+        </div>
+        <div class="summary-pill available">
+          <strong>{{ totalStatusCount('available') }}</strong>
+          <span>Disponibles</span>
+        </div>
+        <div class="summary-pill avoid">
+          <strong>{{ totalStatusCount('avoid') }}</strong>
+          <span>À éviter</span>
+        </div>
+        <div class="summary-pill unavailable">
+          <strong>{{ totalStatusCount('unavailable') }}</strong>
+          <span>Indisponibles</span>
+        </div>
+      </div>
+
+      <p class="feedback" *ngIf="feedbackMessage">{{ feedbackMessage }}</p>
+      <p class="loading-text" *ngIf="isLoading">Chargement des créneaux...</p>
+
+      <div class="day-actions" *ngIf="!isLoading && disponibilitesByDay.length > 0">
+        <button type="button" class="ghost-btn" (click)="expandAllDays()">Tout ouvrir</button>
+        <button type="button" class="ghost-btn" (click)="collapseAllDays()">Tout fermer</button>
+      </div>
+
+      <div class="days-list" *ngIf="!isLoading && disponibilitesByDay.length > 0">
+        <article class="day-card" *ngFor="let day of disponibilitesByDay; trackBy: trackByDay">
+          <button type="button" class="day-header" (click)="toggleDay(day.date)">
+            <div class="day-heading">
+              <strong>{{ day.label }}</strong>
+              <span>{{ day.slots.length }} créneau(x)</span>
+            </div>
+
+            <div class="day-glance">
+              <span class="mini-pill preferred">{{ dayStatusCount(day, 'preferred') }}</span>
+              <span class="mini-pill available">{{ dayStatusCount(day, 'available') }}</span>
+              <span class="mini-pill avoid">{{ dayStatusCount(day, 'avoid') }}</span>
+              <span class="mini-pill unavailable">{{ dayStatusCount(day, 'unavailable') }}</span>
+              <span class="expand-icon" [class.open]="day.expanded"></span>
+            </div>
+          </button>
+
+          <div class="slots-list" *ngIf="day.expanded">
+            <div class="slot-row" *ngFor="let dispo of day.slots; trackBy: trackByCreneau">
+              <div class="slot-meta">
+                <span class="slot-code">{{ dispo.code_slot }}</span>
+                <div>
+                  <strong>{{ dispo.heure_debut }} - {{ dispo.heure_fin }}</strong>
+                  <p>{{ statusLabel(dispo.statut) }}</p>
+                </div>
+              </div>
+
+              <label class="slot-field">
+                <span>Statut</span>
+                <select [value]="dispo.statut" (change)="updateStatut(dispo.creneau_id, $any($event.target).value)">
+                  <option *ngFor="let status of statuses" [value]="status">{{ statusLabel(status) }}</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p class="empty-state" *ngIf="!isLoading && selectedPeriodeId && disponibilitesByDay.length === 0">
+        Aucun créneau trouvé pour cette période.
+      </p>
+
+      <button matButton type="button" class="primary-btn" (click)="save()" [disabled]="isSaving || !selectedPeriodeId">
+        {{ isSaving ? 'Enregistrement...' : 'Sauvegarder les disponibilités' }}
+      </button>
+    </form>
+  </section>
+
+  <section class="panel periode-panel">
+    <h2 (click)="toggleSection('periodes')">
+      Périodes de soutenance
+      <span [class]="sections.periodes ? 'arrow down' : 'arrow right'"></span>
+    </h2>
+
+    <div class="tab" *ngIf="sections.periodes">
+      <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Diplôme</th>
+            <th>Date début</th>
+            <th>Date fin</th>
+            <th>Fenêtre horaire</th>
+            <th>Heure début</th>
+            <th>Heure fin</th>
+            <th>Durée (minutes)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of periodes">
+            <td>{{ p.diplome.nom }}</td>
+            <td>{{ p.date_debut }}</td>
+            <td>{{ p.date_fin }}</td>
+            <td>{{ p.date_debut }} -> {{ p.date_fin }}</td>
+            <td>{{ p.heure_debut }}</td>
+            <td>{{ p.heure_fin }}</td>
+            <td>{{ p.duree_minutes }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,28 @@
+
+<mat-card>
+    <mat-card-header>
+        <h2>Login form</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <form #loginForm="ngForm" (submit)="loginUser() ">
+            <mat-error *ngIf="!loginValid">Incorrect email or password</mat-error>
+            <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="email" placeholder="Email" name="email" required>
+            <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="password" placeholder="password" name="password" required>
+            <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
+       
+        </form>
+         <p>
+        Don't have an account?
+        <a routerLink="/register" >Register</a>
+         </p>
+        
+    </mat-card-content>
+</mat-card>

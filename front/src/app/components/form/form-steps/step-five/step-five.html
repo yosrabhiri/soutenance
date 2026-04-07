@@ -1,0 +1,14 @@
+<div class="container">
+  <h3>votre attestation est prête vous pouvez la télécharger maintenant</h3>
+
+  <button 
+    (click)="generatePdf()"  
+    mat-fab 
+    extended 
+    class="download"
+    [disabled]="etat_validation !== 'accepte'">
+    
+    <mat-icon>download</mat-icon>
+    <span>Télécharger l'attestation</span>
+  </button>
+</div>

@@ -1,0 +1,38 @@
+<h3>Données personnelles</h3>
+<form [formGroup]="prof">
+  <div class="formContainer">
+    <div class="fieldsContainer">
+
+     
+
+      <mat-form-field class="fieldstyle fieldMargin">
+        <mat-label>Encadrant pédagogique</mat-label>
+        <mat-select (selectionChange)="selectEncadrant($event.value)" [disabled]="readOnly" formControlName="nomPrenom">
+          <mat-option *ngFor="let enc of encadrants" [value]="enc">
+            {{ enc.nom }} {{ enc.prenom }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="fieldstyle">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="emailprof" [readonly]="readOnly" placeholder="email" readonly>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+   <div class="fieldsContainer">
+
+     
+
+      
+
+      <mat-form-field class="fieldstyle">
+        <mat-label>Lien Overleaf</mat-label>
+        <input matInput formControlName="url_overleaf" [readonly]="readOnly" placeholder="email" readonly>
+      </mat-form-field>
+
+    </div>
+  
+</form>

@@ -1,0 +1,18 @@
+<div class="container mat-elevation-z3" 
+ [style.background-color]="data().backgroundColor ?? 'white'"
+[style.color]="data().color ?? 'inherit'"
+    [style.grid-area]="'span ' + (data().rows ?? 1) + ' / span ' + (data().columns ?? 1)"
+    [style.height.px]="(data().rows ?? 1) * 150"
+>
+    
+    <h3 class="m-0">{{data().label}}</h3>
+    <button mat-icon-button class="settings-button">
+        <mat-icon  (click)="showOptions.set(true)"
+        [style.--mdc-icon-button-icon-color]="data().color ?? 'inherit'"> settings</mat-icon>
+    </button>
+   
+    <ng-container [ngComponentOutlet]="data().content" />
+    @if(showOptions()){
+        <app-widget-option [(showOptions)]="showOptions" [data]="data()"></app-widget-option>
+    }
+</div>

@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="table-header">
+    <div class="header-content">
+      <div class="date-section">
+        <span class="month-year">Encadrement en cours</span>
+      </div>
+      <div class="search-section" style="display: flex; align-items: center; gap: 8px;">
+        <input type="text" class="search-input" placeholder="Rechercher..." [(ngModel)]="searchText" (input)="filterTable()" />
+        <button class="search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <mat-checkbox [(ngModel)]="allSelected" (change)="toggleSelectAll()"></mat-checkbox>
+          </th>
+          <th>Nom et prénom</th>
+          <th>Email</th>
+          <th>Specialité</th>
+          <th>Statut du stage</th>
+          <th>Nom de la société</th>
+          <th>Voir/Modifier</th>
+          <th>Réunion prévue</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let etu of filteredEtudiants">
+          <td>
+            <mat-checkbox [(ngModel)]="etu.selected" (change)="onSelectChange(etu)"></mat-checkbox>
+          </td>
+          <td>
+            <div class="nom-cell">
+              <img [src]="etu.avatar" alt="avatar" class="avatar" />
+              <span>{{ etu.nom }}</span>
+            </div>
+          </td>
+          <td>{{ etu.email }}</td>
+          <td><span class="specialite">{{etu.specialite}}</span></td>
+          <td>
+            <button [ngClass]="{'orange': etu.statut==='en_attente','vert': etu.statut==='valide'}"
+              matButton (click)="confirmStatut(etu)">
+              {{ etu.statut }}
+            </button>
+          </td>
+          <td>{{ etu.societe }}</td>
+          <td>
+            <a [href]="etu.overleafLink" class="overleaf-link" target="_blank">
+              <i class="fas fa-edit"></i> Modifier sur Overleaf
+            </a>
+          </td>
+          <td>
+  <mat-icon *ngIf="etu.hasFutureMeeting" class="hasmeet">check_circle</mat-icon>
+  <mat-icon *ngIf="!etu.hasFutureMeeting" color="warn">cancel</mat-icon>
+</td>
+ 
+
+        </tr>
+      </tbody>
+    </table>
+   
+  
+  </div>
+
+ <div class="button-container">
+   <button matButton  (click)="planifierReunion()"  class="Button"><mat-icon>group</mat-icon> une réunion</button>
+      <button matButton style="margin: 0 10px;" (click)="planifieropen()"  class="cal"><mat-icon>event</mat-icon></button>
+ </div>
+</div>

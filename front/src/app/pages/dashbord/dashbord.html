@@ -1,0 +1,28 @@
+
+
+<div class="header">
+    <button mat-raised-button color="primary" [mat-menu-trigger-for]="widgetMenu">
+       <mat-icon>add_circle</mat-icon> 
+        add widget
+    </button>
+    <mat-menu #widgetMenu="matMenu">
+       <ng-container *ngIf="store.widgetsToAdd().length > 0; else noWidgets">
+      <button mat-menu-item *ngFor="let widget of store.widgetsToAdd()" 
+              (click)="store.addWidget(widget)">
+        {{ widget.label }}
+      </button>
+    </ng-container>
+<!-- Sinon affichage "No widgets to add" -->
+    <ng-template #noWidgets>
+      <button mat-menu-item disabled>No widgets to add</button>
+    </ng-template>
+  </mat-menu>
+</div>
+
+<div  #dashboard class="dashboard-widgets">
+    @for(w of store.addedWidgets(); track w.id ){
+    <app-widget [data]="w"></app-widget>
+    }
+</div>
+
+ 

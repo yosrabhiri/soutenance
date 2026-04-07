@@ -1,0 +1,71 @@
+<div class="schedule-page">
+  <h2>Toutes les soutenances</h2>
+
+  <div class="toolbar">
+    <label for="periode-all-schedule">Période</label>
+    <select id="periode-all-schedule" [(ngModel)]="selectedPeriodeId" (change)="loadSoutenances()">
+      <option *ngFor="let periode of periodes" [ngValue]="periode.id">
+        {{ periode.diplome.nom }} | {{ periode.date_debut }} -> {{ periode.date_fin }}
+      </option>
+    </select>
+    <button class="refresh-btn" (click)="loadSoutenances()">Actualiser</button>
+  </div>
+
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  <p *ngIf="isLoading">Chargement des soutenances...</p>
+
+  <div class="schedule-card" *ngIf="selectedPeriodeId">
+    <div class="schedule-head">
+      <div>
+        <h3>Vue globale</h3>
+        <p>Chaque soutenance affiche l’étudiant, le stage planifié et les membres du jury avec leurs rôles.</p>
+      </div>
+      <span class="schedule-count">{{ soutenances.length }} soutenance(s)</span>
+    </div>
+
+    <div class="table-responsive" *ngIf="soutenances.length > 0; else noSchedule">
+      <table class="soutenances-table">
+        <thead>
+          <tr>
+            <th>Soutenance</th>
+            <th>Étudiant</th>
+            <th>Créneau</th>
+            <th>Salle</th>
+            <th>Jury</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let soutenance of soutenances">
+            <td>#{{ soutenance.id }}</td>
+            <td>
+              <div class="student-name">{{ studentLabel(soutenance) }}</div>
+              <div class="student-meta" *ngIf="soutenance.etudiant?.email">{{ soutenance.etudiant?.email }}</div>
+              <div class="student-meta" *ngIf="soutenance.etudiant?.specialite?.nom">{{ soutenance.etudiant?.specialite?.nom }}</div>
+            </td>
+            <td>
+              {{ soutenance.creneau?.date }} | {{ soutenance.creneau?.code_slot }} |
+              {{ soutenance.creneau?.heure_debut }}-{{ soutenance.creneau?.heure_fin }}
+            </td>
+            <td>{{ soutenance.salle?.nom || '—' }}</td>
+            <td>
+              <div class="jury-list" *ngIf="juryMembers(soutenance).length > 0; else noJury">
+                <div class="jury-item" *ngFor="let member of juryMembers(soutenance)">
+                  <span class="jury-name">{{ member.nom || member.enseignant_id }}</span>
+                  <span class="role-badge" [class]="roleClass(member.role)">{{ member.role || 'Membre du jury' }}</span>
+                </div>
+              </div>
+
+              <ng-template #noJury>
+                <span class="student-meta">Aucun jury défini</span>
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noSchedule>
+      <p class="empty-schedule">Aucune soutenance générée pour cette période.</p>
+    </ng-template>
+  </div>
+</div>

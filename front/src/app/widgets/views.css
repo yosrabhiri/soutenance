@@ -1,0 +1,17 @@
+.text-green {
+  color: green; /* ça vient de ton CSS ou d’un framework */
+}
+.row {
+  display: flex;
+  align-items: center; /* aligne verticalement */
+  gap: 8px; /* espace entre le texte et l’icône */
+}
+
+.stat {
+  margin: 0; 
+  /* retire les marges par défaut du h3 */
+}
+
+.mb-8 {
+  margin-bottom: 1rem; /* typique de Tailwind */
+}

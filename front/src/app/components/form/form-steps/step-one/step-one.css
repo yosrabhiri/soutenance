@@ -1,0 +1,28 @@
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.fieldscontainer{
+    display: flex;
+    justify-content: space-between;
+}
+.fieldstyle{
+    min-width: 45%;
+    
+}
+.fieldMargin{
+   
+    margin: 0 50px 0 0;
+}
+@media (max-width: 900px) {
+    .fieldstyle {
+        min-width: 95%;
+        display: flex;
+    justify-content: center;
+    }
+    .fieldMargin{
+   
+    margin:0;
+}
+}

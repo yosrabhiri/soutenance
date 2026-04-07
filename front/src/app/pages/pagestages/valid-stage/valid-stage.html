@@ -1,0 +1,72 @@
+<div class="container">
+<div class="table-header">
+  <div class="header-content">
+    <div class="date-section">
+      <span class="month-year">Validité du stage</span>
+    </div>
+   <div class="search-section" style="display: flex; align-items: center; gap: 8px;">
+        <input type="text" class="search-input" placeholder="Rechercher..." [(ngModel)]="searchText" (input)="filterTable()" />
+        <button class="search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+  </div>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Nom et prénom</th>
+        <th>Email</th>
+        <th>Filière</th>
+        <th>Nom de la société</th>
+        <th>Traité par</th>
+        <th>Statut du stage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let etu of etudiantsFiltres"
+          (click)="etu.statut?.trim().toLowerCase() === 'en_attente' ? ouvrirPopup(etu) : null">
+        <td>
+          <div class="nom-cell">
+            <img src="assets/images/avatar.jpg" alt="avatar" class="avatar" />
+            <span>{{ etu.nom }} {{ etu.prenom }}</span>
+          </div>
+        </td>
+        <td>{{ etu.email }}</td>
+        <td>{{ etu.filiere || '—' }}</td>
+        <td>{{ etu.societe || '—' }}</td>
+        <td>{{ etu.traite_par || '—' }}</td>
+        <td>
+          <span 
+                [class.valide]="etu.statut?.trim().toLowerCase() === 'accepte'"
+                [class.en-attente]="etu.statut?.trim().toLowerCase() === 'en_attente'"
+                [class.refuse]="etu.statut?.trim().toLowerCase() === 'refusé'">
+            {{ etu.statut || '—' }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Popup -->
+  <div class="popup-overlay" *ngIf="popupOuvert" (click)="fermerPopup()">
+    <div class="popup">
+       <button class="close-btn" (click)="fermerPopup()">✖</button>
+      <h3>Stage de {{ etuSelectionne?.nom }} {{ etuSelectionne?.prenom }}</h3>
+      <p><strong>Filière :</strong> {{ etuSelectionne?.filiere || '—' }}</p>
+      <p><strong>Société :</strong> {{ etuSelectionne?.societe || '—' }}</p>
+      <p><strong>Traité par :</strong> {{ etuSelectionne?.traite_par || '—' }}</p>
+
+      
+          <div class="button-container">
+      <button matButton="filled" class="validee" (click)="repondreStage('accepte')">Accepter</button>
+      <button matButton="filled" class="en-attentee" (click)="repondreStage('refuse')">Refuser</button>
+      
+    </div>
+     
+    </div>
+  </div>
+</div>
+</div>

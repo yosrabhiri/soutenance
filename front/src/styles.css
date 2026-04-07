@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html {
+  /* Checked icon color */
+  --mat-checkbox-selected-icon-color: #3871CA; /* or any color you want */
+
+  /* Checked checkmark color */
+  --mat-checkbox-selected-checkmark-color: white;
+
+  /* Checked hover icon color */
+  --mat-checkbox-selected-hover-icon-color: #22509a;
+
+  /* Checked focus icon color */
+  --mat-checkbox-selected-focus-icon-color: #234170;
+
+  /* Checked pressed icon color */
+  --mat-checkbox-selected-pressed-icon-color: #70748f;
+
+  /* Hover/focus/pressed state layer color (ripple effect) */
+  --mat-checkbox-selected-focus-state-layer-color: rgba(29, 56, 200, 0.1);
+  --mat-checkbox-selected-hover-state-layer-color: rgba(29, 56, 200, 0.1);
+  --mat-checkbox-selected-pressed-state-layer-color: rgba(29, 56, 200, 0.2);
+}

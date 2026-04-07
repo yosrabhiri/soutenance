@@ -1,0 +1,157 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Numéro inscription</mat-label>
+    <input matInput formControlName="numero_inscription" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Prénom</mat-label>
+    <input matInput formControlName="prenom" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Nom</mat-label>
+    <input matInput formControlName="nom" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Mot de passe</mat-label>
+    <input matInput type="password" formControlName="password" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Confirmation mot de passe</mat-label>
+    <input matInput type="password" formControlName="password_confirmation" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Adresse</mat-label>
+    <input matInput formControlName="adresse">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Code postal</mat-label>
+    <input matInput formControlName="code_postal">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Date de naissance</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="date_naissance">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Lieu de naissance</mat-label>
+    <input matInput formControlName="lieu_naissance">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Nationalité</mat-label>
+    <input matInput formControlName="nationalite">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Genre</mat-label>
+    <mat-select formControlName="genre">
+      <mat-option value="masculin">Masculin</mat-option>
+      <mat-option value="féminin">Féminin</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Année universitaire</mat-label>
+    <input matInput formControlName="annee_universitaire">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Année Bac</mat-label>
+    <input matInput formControlName="annee_bac">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Moyenne Bac</mat-label>
+    <input matInput formControlName="moyenne_bac">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Session Bac</mat-label>
+    <mat-select formControlName="session_bac">
+      <mat-option value="principale">Principale</mat-option>
+      <mat-option value="contrôle">Contrôle</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Mention Bac</mat-label>
+    <mat-select formControlName="mention_bac">
+      <mat-option value="passable">Passable</mat-option>
+      <mat-option value="assez bien">Assez Bien</mat-option>
+      <mat-option value="bien">Bien</mat-option>
+      <mat-option value="très bien">Très Bien</mat-option>
+      <mat-option value="excellent">Excellent</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Section Bac</mat-label>
+    <input matInput formControlName="section_bac">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Pays Bac</mat-label>
+    <input matInput formControlName="pays_bac">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Statut universitaire</mat-label>
+    <input matInput formControlName="statut_universitaire">
+  </mat-form-field>
+
+ <mat-form-field appearance="outline" class="full-width">
+  <mat-label>Diplôme</mat-label>
+  <mat-select formControlName="diplome_id">
+    <mat-option *ngFor="let d of diplomes" [value]="d.id">
+      {{ d.nom }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label>Niveau</mat-label>
+  <mat-select formControlName="niveau_id">
+    <mat-option *ngFor="let n of filteredNiveaux" [value]="n.id">
+      {{ n.nom }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label>Spécialité</mat-label>
+  <mat-select formControlName="specialite_id">
+    <mat-option *ngFor="let s of filteredSpecialites" [value]="s.id">
+      {{ s.nom }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>CIN</mat-label>
+    <input matInput formControlName="cin">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">
+    S'inscrire
+  </button>
+</form>
+ <p>
+        You already have an account?
+        <a routerLink="/login" >Login</a>
+         </p>

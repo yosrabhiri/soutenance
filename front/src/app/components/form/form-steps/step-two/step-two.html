@@ -1,0 +1,57 @@
+<h3>Société</h3>
+<form [formGroup]="groupsociete">
+  <div class="formContainer">
+    <div class="fieldsContainer">
+      
+      <!-- Autocomplete sur le nom de société -->
+      <mat-form-field class="fieldstyle fieldMargin">
+        <mat-label>Société</mat-label>
+        <input
+          type="text"
+          matInput
+          [readonly]="readOnly"
+          formControlName="nom"
+          [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSocieteSelected($event.option.value)"  >
+         @for (soc of filteredSocietes | async; track soc){
+          <mat-option [value]="soc.nom">
+            {{ soc.nom }}
+          </mat-option>}
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="fieldstyle">
+        <mat-label>Adresse</mat-label>
+        <input matInput formControlName="adresse" placeholder="adresse"  [readonly]="readOnly">
+      </mat-form-field>
+    </div>
+
+    <!-- Champs supplémentaires -->
+    <div>
+      <mat-form-field class="fieldstyle fieldMargin">
+        <mat-label>Domaine d'activité</mat-label>
+        <input matInput formControlName="domaine" placeholder="Domaine"  [readonly]="readOnly">
+      </mat-form-field>
+
+      <mat-form-field class="fieldstyle">
+        <mat-label>Téléphone</mat-label>
+        <input matInput formControlName="tel" placeholder="Téléphone"  [readonly]="readOnly">
+      </mat-form-field>
+
+      <mat-form-field class="fieldstyle fieldMargin">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="emailSo" placeholder="Email" [readonly]="readOnly">
+      </mat-form-field>
+
+      <mat-form-field class="fieldstyle">
+        <mat-label>Site web</mat-label>
+        <input matInput formControlName="siteweb" placeholder="Site web" [readonly]="readOnly">
+      </mat-form-field>
+
+      <mat-form-field class="fieldstyle">
+        <mat-label>LinkedIn</mat-label>
+        <input matInput formControlName="linkedin" placeholder="Profil LinkedIn" [readonly]="readOnly">
+      </mat-form-field>
+    </div>
+  </div>
+</form>

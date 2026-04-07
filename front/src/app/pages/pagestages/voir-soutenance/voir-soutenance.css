@@ -1,0 +1,200 @@
+.soutenances-container {
+  padding: 20px;
+  background-color: #fff;
+}
+.toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.toolbar select {
+  min-width: 320px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #cad5e2;
+}
+.refresh-btn {
+  background-color: #0c5dc7;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.summary-card {
+  background: #f6f8fb;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+}
+.summary-card h3 {
+  margin-top: 0;
+}
+.error {
+  color: #b42318;
+  font-weight: 600;
+}
+.success {
+  color: #027a48;
+  font-weight: 600;
+}
+.preview-controls {
+  margin-bottom: 20px;
+}
+.generation-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.secondary-btn {
+  background-color: #475467;
+}
+.refresh-btn:disabled,
+.secondary-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+.diagnostics-block {
+  margin-top: 24px;
+}
+.diagnostic-card {
+  background: #fff8e8;
+  border: 1px solid #f3d69b;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.diagnostic-card p {
+  margin: 0 0 8px;
+}
+.diagnostic-card ul {
+  margin: 8px 0 0 18px;
+}
+
+.soutenances-container h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.soutenances-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.soutenances-table th {
+  background-color: #34495e;
+  color: white;
+  padding: 15px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.soutenances-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ecf0f1;
+  font-size: 14px;
+}
+
+.soutenances-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Badges pour les responsabilités */
+.badge-encadrant {
+  background-color: #3498db;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-president {
+  background-color: #27ae60;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-rapporteur {
+  background-color: #e74c3c;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-default {
+  background-color: #95a5a6;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Bouton PDF */
+.pdf-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.pdf-btn:hover {
+  background-color: #c0392b;
+}
+
+.pdf-btn i {
+  font-size: 14px;
+}
+
+/* Responsive */
+.table-responsive {
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+  .soutenances-table {
+    font-size: 12px;
+  }
+
+  .soutenances-table th,
+  .soutenances-table td {
+    padding: 8px 6px;
+  }
+
+  .pdf-btn {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+}

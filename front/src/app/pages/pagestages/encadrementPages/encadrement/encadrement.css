@@ -1,0 +1,321 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+*{
+  box-sizing: border-box;
+}
+
+.table-container {
+
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+ 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Segoe UI", sans-serif;
+}
+
+thead {
+  background: #f0efef9c;
+
+}
+
+th {
+  text-align: left;
+  padding: 12px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+.container{
+  background-color: white;
+  width: 100%;
+  min-height: 100%;
+  padding:30px;
+  margin-bottom: 20px;
+
+}
+
+.nom-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.affecte {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.non-affecte {
+  color: red;
+  font-weight: bold;
+}
+
+.btn-container {
+  text-align: right;
+  margin-top: 20px;
+
+}
+
+.btn-action {
+  background: #2f6fed;
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-action:hover {
+  background: #1f58c7;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+ 
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.date-section {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.search-section {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.search-button {
+  
+  background-color: #1d5897;
+  padding: 3px 6px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.date-section {
+  display: flex;
+  gap: 10px;
+}
+
+.month-select, .year-select {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  outline: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Styles pour les statuts */
+.valide {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.en-attente {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+/* Optionnel : pour rendre plus joli */
+.valide, .en-attente {
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+}
+
+
+/* Version avec badges */
+.valide {
+  background: linear-gradient(145deg, #4caf50, #66bb6a);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 0.85em;
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+}
+
+.en-attente {
+  background: linear-gradient(145deg, #f44336, #ef5350);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 0.85em;
+  box-shadow: 0 2px 4px rgba(244, 67, 54, 0.3);
+}
+
+/* Effet au survol */
+.valide:hover, .en-attente:hover {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+}
+
+/* Styles pour les liens PDF */
+.pdf-link {
+  color: #d93025;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background-color: #fce8e6;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.pdf-link:hover {
+  background-color: #fad2cf;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(217, 48, 37, 0.2);
+}
+
+/* Styles pour les liens Overleaf */
+.overleaf-link {
+  color: #1aa34a;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+font-weight: 700;
+  background-color: #f4faf6;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.overleaf-link:hover {
+  background-color: #ceead6;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(19, 138, 61, 0.2);
+}
+
+/* Icônes */
+.fas {
+  font-size: 14px;
+}
+.specialite {
+  display: inline-block;   /* nécessaire pour text-overflow */
+  max-width: 200px;        /* largeur maximale */
+  white-space: nowrap;      /* empêche le texte de passer à la ligne */
+  overflow: hidden;         /* masque le texte qui dépasse */
+   text-overflow: ellipsis; /* ajoute "..." à la fin si texte trop long */
+}
+
+
+/* Alignement des cellules */
+td {
+  vertical-align: middle;
+  text-align: left;
+}
+.orange{
+  border: orange(231, 161, 31);
+  
+  border-style: solid 5px;
+  border-radius: 0.3rem;
+ 
+  padding: 6px 10px;
+
+  background-color: #fbf6f2;
+  color: orange;
+  font-weight: 600;
+}
+.vert {
+  color: rgb(16, 185, 72);
+  
+  
+  
+  border-style: solid 5px;
+  border-radius: 0.3rem;
+  
+  padding: 6px 24px;
+  font-weight: 600;
+
+  background-color: #e4fdedc3;
+  
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pdf-link, .overleaf-link {
+    padding: 4px 6px;
+    font-size: 0.9em;
+  }
+
+  .fas {
+    font-size: 12px;
+  }
+}
+.Button{
+    background-color: #3871CA;
+    color: rgb(255, 255, 255) !important;
+    padding: 5px 15px;
+}
+.button-container{
+  margin: 15px 0;
+  display: flex;
+  justify-content: end;
+}
+.hasmeet{
+color: rgb(12, 178, 45);
+}
+.cal{
+  background-color: #fdfdfde1;
+    color: #3871CA;
+  
+}

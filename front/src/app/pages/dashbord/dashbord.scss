@@ -1,0 +1,39 @@
+/*@use '../../../variables';
+
+
+.tcontainer {
+  width: 100vw;
+  height: 100vh;
+  justify-content: flex-start;
+}
+
+.desktop {
+  display: none;
+}
+
+@media (min-width: 37.5em) {
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: contents;
+  }
+
+  footer {
+    position: relative;
+    bottom: -1rem;
+    width: 100%;
+    margin: .25rem auto;
+    background-color: variables.$bright-white;
+  }
+
+  .attribution {
+    font-size: .75rem;
+    text-align: center;
+  }
+
+  .attribution a {
+    color: variables.$shady-neon-blue;
+  }
+}*/

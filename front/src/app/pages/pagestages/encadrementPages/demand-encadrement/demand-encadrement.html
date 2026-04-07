@@ -1,0 +1,58 @@
+<div class="container">
+<div class="table-header">
+  <div class="header-content">
+    <div class="date-section">
+      <span class="month-year">validité du stage</span>
+    </div>
+     <div class="search-section" style="display: flex; align-items: center; gap: 8px;">
+        <input type="text" class="search-input" placeholder="Rechercher..." [(ngModel)]="searchText" (input)="filterTable()" />
+        <button class="search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+  </div>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Nom et prénom</th>
+        <th>Email</th>
+
+        <th>Demande</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of demandes" (click)="ouvrirPopup(d)">
+  <td>
+    <div class="nom-cell">
+      <img src="assets/images/avatar.jpg" alt="avatar" class="avatar" />
+      <span>{{ d.etudiant?.nom }} {{d.etudiant?.prenom}}</span>
+    </div>
+  </td>
+  <td>{{ d.etudiant?.email }}</td>
+  <td><div [ngClass]="{'orange': d.statut==='en_attente','vert': d.statut==='acceptee'}">
+    {{ d.statut }}</div> </td>
+</tr>
+
+    </tbody>
+  </table>
+
+  <!-- <div class="btn-container">
+    <button class="btn-action">Sélectionner offre</button>
+  </div> -->
+</div>
+<div class="popup-overlay" *ngIf="popupOuvert" (click)="fermerPopup()">
+  <div class="popup" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="fermerPopup()">✖</button>
+    <h3>Vous avez recu une demande d'encadrement de la part de {{ demandeSelectionnee?.etudiant?.nom }}</h3>
+    <p class="quest">Vous voulez l'accepter?</p>
+    <div class="button-container">
+      <button matButton="filled" class="valide" (click)="repondre('acceptee')">Accepter</button>
+      <button matButton="filled" class="en-attente" (click)="repondre('refusee')">Refuser</button>
+      
+    </div>
+  </div>
+</div>
+</div>

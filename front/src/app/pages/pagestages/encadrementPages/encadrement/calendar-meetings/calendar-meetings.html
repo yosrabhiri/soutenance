@@ -1,0 +1,19 @@
+<div class="container">
+<h3 mat-dialog-title class="titre">{{data.title}}</h3>
+    <mat-dialog-content>
+      <p class="subtitle"><strong >Heure :</strong> {{data.heure}}</p>
+      <p class="subtitle"><strong >Salle :</strong> {{data.salle}}</p>
+      
+
+      <strong class="subtitle">Étudiants concernés :</strong>
+      <ul class="subtitle">
+        <li *ngFor="let etu of data.etudiants">
+          {{etu.nom}} {{etu.prenom}} ({{etu.specialite | slice:0:25}}...)
+        </li>
+      </ul>
+      <p><strong>Note :</strong> {{data.note}}</p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button class="fermer" mat-dialog-close>Fermer</button>
+    </mat-dialog-actions>
+    </div>

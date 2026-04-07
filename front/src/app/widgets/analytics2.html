@@ -1,0 +1,21 @@
+<!--<select (change)="onNiveauChange($event)" >
+  <option [value]="1">Niveau 1</option>
+  <option [value]="2">Niveau 2</option>
+  <option [value]="3">Niveau 3</option>
+</select>
+
+<div class="chart-container" >
+  <canvas #chart style="width: 100%; height: 100%;"></canvas>
+</div>-->
+<!-- analytics2.component.html -->
+<div class="dashboard-widget">
+  <label for="niveau-select">Sélectionner le niveau:</label>
+  <select id="niveau-select" (change)="onNiveauChange($event)">
+    <option *ngFor="let n of niveaux" [value]="n">{{ n }}</option>
+  </select>
+<div class="chart-container" >
+    <canvas #chart style="width: 100%; height: 100%;"></canvas>
+</div>
+
+</div>
+

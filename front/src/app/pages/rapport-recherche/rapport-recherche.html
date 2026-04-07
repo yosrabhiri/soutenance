@@ -1,0 +1,30 @@
+<div class="search-container">
+<div class="firstTitle"> <mat-icon class="iconSearch">search</mat-icon>  <h2>Recherche de rapports par mots-clés</h2></div>
+<div class="rechercheNav">
+  <input
+    type="text"
+    [(ngModel)]="motsRecherche"
+    placeholder="Ex: react angular"
+    class="search-input"
+  />
+  <button (click)="rechercher()" class="search-btn">Rechercher</button>
+ </div>
+  <div *ngIf="loading"><app-loading></app-loading></div>
+
+  <div *ngIf="!loading && rapports.length === 0" class="aucun">
+    <mat-icon class="iconSearchoff">search_off</mat-icon> Aucun rapport trouvé.
+  </div>
+<div class="cards">
+  <div *ngFor="let rapport of rapports" class="rapport-card">
+    <a [href]="rapport.version_pdf" target="_blank">
+    <div class="alltitle">
+    <mat-icon class="iconPdf">picture_as_pdf</mat-icon>
+    <p><strong>Sujet :</strong> {{rapport.code_sujet}}</p></div>
+
+    <p><strong>{{rapport.mots_cles.join(', ')}}</strong> </p>
+   
+    </a>  
+</div>
+</div>
+
+</div>

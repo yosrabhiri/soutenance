@@ -1,0 +1,72 @@
+.container{
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
+    justify-content: start;
+
+
+}
+.etat-avenir{
+    color: rgb(130, 182, 231);
+}
+.etat-passe{
+    color: rgb(82, 96, 149);
+}
+.all{
+      background-color: rgb(255, 254, 254);
+     border-radius: 0.3rem;
+     padding: 30px;
+     text-align: center;
+
+}
+*{
+    box-sizing: border-box;
+}
+.carte{
+    background-color: white;
+    border-radius: 0.4rem;
+   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 20px;
+    margin: 15px;
+    text-align: center;
+    width: 30%;
+    min-width: 290px;
+}
+.icon{
+    background-color: rgba(182, 182, 182, 0.401);
+    border-radius: 50%;
+    color: white;
+    padding:12px;
+    width: 50px;
+    height: 50px;
+}
+.infos{
+    text-align: start;
+   padding: 0 10px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.titre{
+    color: rgb(75, 85, 193);
+    text-align: left;
+    padding-left: 25px;
+  
+}
+.note{
+    color: rgb(182, 181, 181);
+}
+@media (max-width: 990px) {
+  .container {
+    justify-content: center; 
+  }
+
+  .titre {
+    text-align: center; 
+    padding-left: 0;    
+  }
+  .carte{
+   
+    width: 80%;
+   
+}
+}

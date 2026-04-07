@@ -1,0 +1,264 @@
+/* Container de la table */
+*{
+  box-sizing: border-box;
+}
+.table-container {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  /*box-shadow: 0 2px 8px rgba(0,0,0,0.1);*/
+  max-height: 500px; /* hauteur max avant scroll */
+  overflow: auto;    /* scroll automatique si contenu dépasse */
+}
+.container{
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  padding:30px;
+}
+
+.valide {
+   color: rgb(16, 185, 72) !important;
+  cursor: pointer;
+  border-style: solid 5px;
+  border-radius: 0.3rem;
+  
+  padding: 6px 24px;
+  font-weight: 600;
+  width: fit-content;
+  background-color: #e4fdedc3 !important;
+}
+
+.en-attente {
+  border: orange(231, 161, 31);
+  
+  border-style: solid 5px;
+  border-radius: 0.2rem;
+ 
+  padding: 6px 20px;
+
+  background-color: #fffcfa !important;
+  color: orange !important;
+   width: fit-content;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.refuse {
+  background-color: #e74c3c;
+  color: white;
+}
+
+
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Segoe UI", sans-serif;
+}
+
+thead {
+  background: #f7f8fa;
+}
+
+th {
+  text-align: left;
+  padding: 12px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+/* Nom avec avatar */
+.nom-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+/* Badges de statut 
+.status-badge{
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+  padding: 6px 12px;
+  /*border-radius: 16px;
+  font-weight: 600;
+  font-size: 0.85em;
+  color: #053363;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}*/
+
+
+
+/* Optionnel : léger effet hover */
+.status-badge:hover {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+}
+
+/* Header avec recherche */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+/*  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;*/
+}
+
+.btn-container { text-align: right; margin-top: 20px; }
+.btn-action { background: #2f6fed; border: none; color: white; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; } .btn-action:hover { background: #1f58c7; }
+.table-header { display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 15px; 
+   } 
+   .header-content { display: flex; justify-content: space-between; width: 100%; align-items: center; } .date-section { font-size: 1.2rem; font-weight: bold; color: #333; } 
+   .date-section { display: flex; gap: 10px; } .month-select, .year-select { padding: 8px 12px; border: 1px solid #ced4da; border-radius: 4px; outline: none; background-color: white; cursor: pointer; }
+.search-section {
+  display: flex;
+  align-items: center;
+}
+   .search-input {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.search-button {
+  
+  background-color: #1d5897;
+  padding: 3px 6px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+   position: relative;
+}
+.close-btn:hover {
+  color: rgb(27, 74, 184);
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+
+}
+/* Styles pour les statuts */
+
+
+.refuse {
+  background-color: #f8d7da;
+  color: #8d1924;
+  padding: 4px 8px;
+  border-radius: 0.3rem;
+  font-weight: 500;
+  font-size: 0.9em;
+
+  cursor: pointer;
+}
+
+.fermer {
+  padding: 4px 8px;
+  border-radius: 0.3rem;
+  font-weight: 500;
+  font-size: 0.9em;
+
+  cursor: pointer;
+}
+.button-container{
+  margin: 30px 0 20px;
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+.btn-container {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.btn-action {
+  background: #2f6fed;
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.en-attentee{
+background-color: #fbfbfb;
+}
+.validee, .en-attentee {
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+}
+.validee {
+ /* background: linear-gradient(145deg, #94d497, #66bb6a);*/
+  color: rgb(245, 250, 247);
+  padding: 6px 12px;
+  border-style: none;
+  border-radius: 0.2rem;
+  font-weight: 600;
+  font-size: 0.85em;
+  background-color: #1b1b1c;
+/* box-shadow: 0 2px 4px rgba(9, 107, 12, 0.3);*/
+}
+
+
+
+/* Effet au survol */
+.validee:hover, .en-attentee:hover {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+}

@@ -1,0 +1,42 @@
+.container{
+    padding:30px 30px;
+    background-color: white;
+}
+.mat-elevation-z8, .mat-mdc-elevation-specific.mat-elevation-z8{
+    box-shadow: none;
+}
+.orange {
+  border: orange(231, 161, 31);
+  
+  border-style: solid 5px;
+  border-radius: 0.3rem;
+  min-height: 100px;
+  padding: 6px 10px;
+
+  background-color: #edf9ff;
+  color: rgb(0, 166, 255);
+  font-weight: 600;
+
+}
+h2{
+    padding: 20px;
+}
+
+.vert {
+  color: rgb(28, 174, 28);
+  
+    border: orange(231, 161, 31);
+  
+  border-style: solid 5px;
+  border-radius: 0.3rem;
+  min-height: 100px;
+  padding: 6px 23px;
+  font-weight: 600;
+
+  background-color: #f2fde9;
+  
+}
+th{
+  background-color: rgb(243, 243, 243)!important;
+  color: rgb(54, 53, 53);
+}

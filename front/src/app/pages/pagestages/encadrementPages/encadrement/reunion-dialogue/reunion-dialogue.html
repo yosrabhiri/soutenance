@@ -1,0 +1,58 @@
+<div class="container">
+<h2 class="titre" mat-dialog-title>Planifier une réunion</h2>
+<form [formGroup]="reunionForm">
+  <mat-form-field appearance="fill" class="inputs">
+    <mat-label>Jour</mat-label>
+  
+   <input matInput [matDatepicker]="datepicker" formControlName="jour">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+  <mat-datepicker #datepicker [calendarHeaderComponent]="Header"></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="inputs">
+    <mat-label>Heure</mat-label>
+    <input
+    matInput
+    formControlName="heure"
+    [matTimepicker]="picker"
+    matTimepickerMin="12:30"
+    matTimepickerMax="17:30">
+  <mat-timepicker-toggle matIconSuffix [for]="picker"/>
+  <mat-timepicker #picker/>
+
+  @if (formControl.errors?.['matTimepickerParse']) {
+    <mat-error>Value isn't a valid time</mat-error>
+  }
+
+  @if (formControl.errors?.['matTimepickerMin']) {
+    <mat-error>Value is too early</mat-error>
+  }
+
+  @if (formControl.errors?.['matTimepickerMax']) {
+    <mat-error>Value is too late</mat-error>
+  }
+    
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="inputs">
+    <mat-label>Salle</mat-label>
+    <input matInput formControlName="salle">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="inputs">
+    <mat-label>Titre</mat-label>
+    <input matInput formControlName="titre">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="inputs">
+    <mat-label>Note</mat-label>
+    <textarea matInput formControlName="note"></textarea>
+  </mat-form-field>
+</form>
+
+<div mat-dialog-actions  class="button-container">
+  <button matButton="filled" (click)="cancel()" class="buttonn">Annuler</button>
+  <button matButton  matButton="filled" (click)="save()" class="buttonCreer">Créer</button>
+</div>
+</div>

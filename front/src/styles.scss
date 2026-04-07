@@ -1,0 +1,172 @@
+/* Global Styles */
+@use './variables';
+
+html,
+body {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: variables.$global-font;
+  font-size: 16px;
+  background-color: variables.$cotton-ball;
+  @include variables.flexSpaceBetween(column);
+  width: 100vw;
+  height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  transition: all .25s ease-in-out;
+}
+
+
+
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: variables.$bright-manatee;
+  @include variables.body-primary-l;
+}
+
+.btn {
+  display: inline-block;
+  min-height: 2.5rem;
+  min-width: 6rem;
+  background-color: variables.$sub-nautical;
+  color: variables.$bright-white;
+  @include variables.body-primary-xs();
+  border: none;
+  border-radius: .25rem;
+}
+
+h1 {
+  @include variables.heading-m;
+}
+
+h2,
+h3 {
+  @include variables.body-primary-s();
+}
+
+p {
+  @include variables.body-primary-l;
+  text-align: center;
+  margin: 2rem 1rem 6rem 1rem;
+}
+
+ul {
+  list-style: none;
+}
+
+span {
+  display: none;
+}
+
+mat-card {
+  position: absolute;
+  top: -5rem;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  background-color: variables.$bright-white !important;
+  width: 21.5rem;
+  height: fit-content;
+  padding: 2rem 1.5rem;
+  @include variables.flexSpaceBetween(column);
+  justify-content: space-evenly;
+  box-shadow: 0 1.5rem 2.5rem -1.25rem rgba(0, 0, 0, 0.0951141);
+  border-radius: 0.625rem !important;
+  text-align: left;
+}
+
+.mat-mdc-card-content:last-child {
+  padding-bottom: 0 !important;
+}
+
+.mat-mdc-card-header,
+.mat-mdc-card-content {
+  padding: 0 !important;
+}
+
+
+
+mat-card-title {
+  @include variables.heading-m;
+  margin-bottom: 0.56rem !important;
+}
+
+mat-card-subtitle {
+  @include variables.body-primary-l;
+  margin-bottom: 1rem !important;
+}
+
+
+
+.alert-danger {
+  display: contents;
+}
+
+
+
+mat-card-content>input:hover,
+a:hover,
+mat-toggle:hover,
+mat-checkbox:hover,
+button:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 37.5em) {
+  .container {
+    @include variables.flexCenter(column);
+    width: 100%;
+    height: 100%;
+  }
+
+  mat-card,
+  mat-card-title,
+  mat-card-subtitle,
+  mat-card-content,
+  mat-card-content input,
+  mat-card-content label .mat-mdc-card-content,
+  form,
+  .column {
+    width: 28.125rem;
+  }
+
+  mat-card {
+    position: relative;
+    top: 0rem;
+    padding: 0;
+    box-shadow: none;
+    align-items: flex-start;
+  }
+
+  mat-card-title {
+    font-size: 2rem;
+    line-height: 2.3rem;
+  }
+
+  mat-card-subtitle {
+    margin-bottom: 2.3rem;
+  }
+
+  .mat-mdc-card-content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+
+
+  .btn {
+    height: 3rem;
+    width: 7.7rem;
+  }
+
+}

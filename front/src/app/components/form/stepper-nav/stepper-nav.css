@@ -1,0 +1,14 @@
+.stepsContainer{
+    padding: 55px 15px;
+}
+.nextButton{
+    background-color: #3871CA;
+    color: rgb(255, 255, 255) !important;
+    padding: 5px 15px;
+}
+.displayButton{
+    display: flex;
+    justify-content: flex-end;
+    margin: 5px 15px;
+}
+
