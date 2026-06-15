@@ -7,6 +7,7 @@ import { Analytics } from '../widgets/analytics';
 import { Analytics2 } from '../widgets/analytics2';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -130,7 +131,7 @@ removeWidget(id:number){
 
 }
   constructor(private http: HttpClient) {}
- private apiUrl = 'http://localhost:8000/api/dashboard'; 
+ private apiUrl = `${environment.apiUrl}/dashboard`; 
   getEtudiantsAffectes() {
     return this.http.get<{ value: number }>(`${this.apiUrl}/etudiants-affectes`);
 

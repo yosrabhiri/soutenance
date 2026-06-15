@@ -3,6 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { environment } from '../../../environments/environment';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -24,7 +25,7 @@ export class Reunion implements OnInit {
   }
 
   getReunions() {
-    this.http.get<any>('http://127.0.0.1:8000/api/etudiant/reunion').subscribe({
+    this.http.get<any>(`${environment.apiUrl}/etudiant/reunion`).subscribe({
       next: (res) => {
         this.reunions = res.data;
         console.log(res,'date')

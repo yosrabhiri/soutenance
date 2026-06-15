@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { Loading } from '../../components/loading/loading';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-rapport-recherche',
@@ -32,7 +33,7 @@ motsRecherche: string = '';
       .map(m => m.trim())
       .filter(m => m.length > 0);
 
-    this.http.post<any[]>('http://localhost:8000/api/stage/search', { keywords })
+    this.http.post<any[]>(`${environment.apiUrl}/stage/search`, { keywords })
   .subscribe({
     next: (res) => {
       this.rapports = res.map(r => ({

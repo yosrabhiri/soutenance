@@ -12,6 +12,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClient } from '@angular/common/http';
 import { StageService } from '../../services/stage-api';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-user-register',
   imports: [FormsModule,CommonModule,MatCardModule,MatInputModule,MatButtonModule,MatIconModule,MatFormFieldModule,RouterLink,MatOption, MatDatepickerModule,MatNativeDateModule,MatSelectModule ,ReactiveFormsModule],
@@ -89,7 +90,7 @@ registerForm!: FormGroup;
       .toISOString()
       .split('T')[0]; // "2025-08-10"
   }
-      this.http.post('http://127.0.0.1:8000/api/register/etudiant', this.registerForm.value)
+      this.http.post(`${environment.apiUrl}/register/etudiant`, this.registerForm.value)
         .subscribe({
           next: (res: any) =>{console.log('✅ Étudiant enregistré', res),
             this.router.navigate(['/login']);

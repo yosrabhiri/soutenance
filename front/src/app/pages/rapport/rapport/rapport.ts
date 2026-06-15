@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import {MatChipInputEvent, MatChipsModule} from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'app-rapport',
   imports: [ MatFormFieldModule,
@@ -104,7 +105,7 @@ addMotCle(event: MatChipInputEvent): void {
     formData.append('mots_cles[]', mot);
   });
 
-    this.http.post('http://localhost:8000/api/stage/depose', formData, {
+    this.http.post(`${environment.apiUrl}/stage/depose`, formData, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
