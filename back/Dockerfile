@@ -7,7 +7,8 @@ RUN apt-get update \
         python3 \
         python3-pip \
         libzip-dev \
-    && docker-php-ext-install pdo_mysql zip \
+        libpq-dev \
+    && docker-php-ext-install pdo_mysql pdo_pgsql zip \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer

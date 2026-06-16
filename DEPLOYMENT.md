@@ -4,7 +4,7 @@ Recommended setup:
 
 - Frontend: Netlify
 - Backend API: Render Web Service using `back/Dockerfile`
-- Database: managed MySQL, for example Railway MySQL, Aiven MySQL, or a VPS-hosted MySQL database
+- Database: Render PostgreSQL
 
 ## Frontend
 
@@ -49,9 +49,9 @@ APP_DEBUG=false
 APP_URL=https://your-backend-domain.com
 FRONTEND_URLS=https://your-frontend-domain.netlify.app
 
-DB_CONNECTION=mysql
+DB_CONNECTION=pgsql
 DB_HOST=your-db-host
-DB_PORT=3306
+DB_PORT=5432
 DB_DATABASE=your-db-name
 DB_USERNAME=your-db-user
 DB_PASSWORD=your-db-password
