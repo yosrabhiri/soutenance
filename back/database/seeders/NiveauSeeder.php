@@ -18,24 +18,24 @@ class NiveauSeeder extends Seeder
     {
         // CYCLE PREPARATOIRE INTEGRE
         $prepa = Diplome::where('nom','CYCLE PREPARATOIRE INTEGRE')->first();
-        Niveau::create(['nom'=>'A1','diplome_id'=>$prepa->id]);
-        Niveau::create(['nom'=>'A2','diplome_id'=>$prepa->id]);
+        Niveau::firstOrCreate(['nom'=>'A1','diplome_id'=>$prepa->id]);
+        Niveau::firstOrCreate(['nom'=>'A2','diplome_id'=>$prepa->id]);
 
         // INGENIEUR INFORMATIQUE
         $ing = Diplome::where('nom','INGENIEUR INFORMATIQUE')->first();
-        Niveau::create(['nom'=>'A1','diplome_id'=>$ing->id]);
-        Niveau::create(['nom'=>'A2','diplome_id'=>$ing->id]);
-        Niveau::create(['nom'=>'A3','diplome_id'=>$ing->id]);
+        Niveau::firstOrCreate(['nom'=>'A1','diplome_id'=>$ing->id]);
+        Niveau::firstOrCreate(['nom'=>'A2','diplome_id'=>$ing->id]);
+        Niveau::firstOrCreate(['nom'=>'A3','diplome_id'=>$ing->id]);
 
         // LICENCE NATIONALE
         $lic = Diplome::where('nom','LICENCE NATIONALE')->first();
-        Niveau::create(['nom'=>'A1','diplome_id'=>$lic->id]);
-        Niveau::create(['nom'=>'A2','diplome_id'=>$lic->id]);
-        Niveau::create(['nom'=>'A3','diplome_id'=>$lic->id]);
+        Niveau::firstOrCreate(['nom'=>'A1','diplome_id'=>$lic->id]);
+        Niveau::firstOrCreate(['nom'=>'A2','diplome_id'=>$lic->id]);
+        Niveau::firstOrCreate(['nom'=>'A3','diplome_id'=>$lic->id]);
 
         // MASTER
         $master = Diplome::where('nom','MASTER')->first();
-        Niveau::create(['nom'=>'A1','diplome_id'=>$master->id]);
-        Niveau::create(['nom'=>'A2','diplome_id'=>$master->id]);
+        Niveau::firstOrCreate(['nom'=>'A1','diplome_id'=>$master->id]);
+        Niveau::firstOrCreate(['nom'=>'A2','diplome_id'=>$master->id]);
     }
 }

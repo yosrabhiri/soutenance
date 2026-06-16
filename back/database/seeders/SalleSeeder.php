@@ -42,7 +42,10 @@ class SalleSeeder extends Seeder
         ];
 
         foreach ($salles as $salle) {
-            Salle::create($salle);
+            Salle::firstOrCreate(
+                ['nom' => $salle['nom'], 'departement_id' => $salle['departement_id']],
+                $salle
+            );
         }
     }
 }

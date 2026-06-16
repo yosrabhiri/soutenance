@@ -18,7 +18,7 @@ class DepartementSeeder extends Seeder
         ];
 
         foreach ($departements as $dep) {
-            Departement::create($dep);
+            Departement::firstOrCreate(['code' => $dep['code']], $dep);
         }
     }
 }
