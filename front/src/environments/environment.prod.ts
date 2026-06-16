@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://your-backend-domain.com/api',
+  apiUrl: 'https://soutenance-wijk.onrender.com/api',
 };
