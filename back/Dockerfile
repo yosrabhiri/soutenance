@@ -26,4 +26,4 @@ RUN composer dump-autoload --optimize \
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "if [ \"$AUTO_MIGRATE\" = \"true\" ]; then php artisan migrate --seed --force; fi && php artisan config:cache && php artisan route:cache && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"]
+CMD ["sh", "-c", "if [ \"$AUTO_MIGRATE\" = \"true\" ]; then (php artisan migrate --force && if [ \"$AUTO_SEED\" = \"true\" ]; then php artisan db:seed --force; fi) & fi && php artisan config:cache && php artisan route:cache && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"]
